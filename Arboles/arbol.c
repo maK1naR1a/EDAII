@@ -37,7 +37,51 @@ void amplitud(Arbol raiz)
     if (nodo->der!=NULL) colaInserta(&c,nodo->der);
   }
 }
-// 
+int altura(Arbol raiz)
+{
+    if (raiz==NULL) return 0;
+    else
+    { int altIzq, altDer;
+      altIzq = altura(raiz->izq);
+      altDer = altura(raiz->der);
+      if (altIzq>altDer) return altIzq+1;
+      else return altDer+1;
+    }
+}
+int numNodos(Arbol raiz)
+{
+    if (raiz==NULL) return 0;
+    else return 1+numNodos(raiz->izq)+numNodos(raiz->der);
+}
+Arbol anula(Arbol raiz)
+{
+}
+int numNodosHoja(Arbol raiz)
+{
+    if (raiz==NULL) return 0;
+    else if (raiz->izq==NULL && raiz->der==NULL) return 1;
+    else return numNodosHoja(raiz->izq)+numNodosHoja(raiz->der);
+}
+int numNodosInternos(Arbol raiz)
+{
+    if (raiz==NULL) return 0;
+    else if (raiz->izq==NULL && raiz->der==NULL) return 0;
+    else return 1+numNodosInternos(raiz->izq)+numNodosInternos(raiz->der);
+}
+int numHijoUnico(Arbol raiz)
+{
+    if (raiz==NULL) return 0;
+    else if (raiz->izq==NULL && raiz->der!=NULL) return 1+numHijoUnico(raiz->der);
+    else if (raiz->izq!=NULL && raiz->der==NULL) return 1+numHijoUnico(raiz->izq);
+    else return numHijoUnico(raiz->izq)+numHijoUnico(raiz->der);
+}
+Arbol buscarMax(Arbol raiz)
+{
+    if (raiz==NULL) return NULL;
+    else if (raiz->der==NULL && raiz->izq==NULL) return raiz;
+    else return buscarMax(raiz->der) < buscarMax(raiz->izq)? buscarMax(raiz->izq):buscarMax(raiz->der);
+}
+//
 // Recorridos en profundidad "recursivos"
 //
 void preOrden(Arbol raiz)
@@ -61,6 +105,3 @@ void postOrden(Arbol raiz)
     printf("%c ",raiz->info);
   }
 }
-
-
-

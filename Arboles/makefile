@@ -2,9 +2,6 @@
 
 # Ejercicio 1: Recorridos en árboles binarios
 
-ejercicio1: ejercicio1.c arbol.o cola.o
-	gcc -g ejercicio1.c arbol.o cola.o -o ejercicio1
-
 # Ejercicio 2: Aplicar las funciones recursivas del ejercicio2 a los arboles de los ejercicios 1 y 3
 
 # Sesión 1 	Aplicación de los TAD's pila y cola en la generación y recorrido de árboles binarios

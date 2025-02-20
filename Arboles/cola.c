@@ -1,58 +1,40 @@
-#include "cola.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "cola.h"
 
-// Inicializa una cola vacía
-void colaCreaVacia(Cola *cola) {
-    cola = (Cola*)malloc(sizeof(Cola));
-    cola->frente = NULL;
-    cola->cola = NULL;
-    return;
+int colaCreaVacia(Cola *c) {
+	if (c == NULL) return -1;
+	c->frente = c->fondo = NULL;
+	return 0;
 }
 
-int colaVacia (Cola *cola)
-{
-    if(cola->frente == NULL)
-    {
-        return 0;
-    }
-    return 1;
+int colaVacia(Cola *c) {
+	if (c == NULL) return -1;
+	return (c->frente == NULL && c->fondo == NULL);
 }
 
-void colaInserta (Cola *cola, tipoNodo *dato)
-{
-   Nodo *nuevo;
-   nuevo->dato = dato;
-   if (colaVacia(cola))
-   {
-    nuevo->siguiente = NULL;
-    cola->cola = nuevo;
-    cola->frente = nuevo;
-    return;
-   }
-   nuevo->siguiente = cola->cola;
-   cola->cola = nuevo;
-   return;
+int colaInserta(Cola *c, tipoElemento elemento) { 
+	if(c == NULL) return -1;
+
+	tipoCelda *celda;
+	if((celda = malloc(sizeof(tipoCelda))) == NULL) return -2;
+
+	celda->elemento = elemento;
+	celda->sig = NULL;
+
+	if (c->fondo == NULL) c->frente = c->fondo = celda;
+	else c->fondo = c->fondo->sig = celda;
+	return 0;
 }
 
-tipoNodo* colaSuprime(Cola *cola)
-{
-    Nodo *aux = cola->cola;
-    if (colaVacia(cola)) {return NULL;}
-    if (aux == cola->frente)
-    {
-        cola->cola = NULL;
-        cola->frente = NULL;
-        return aux->dato;
-    }
-    while (aux->siguiente->siguiente != NULL)
-    {
-        aux = aux->siguiente;
-    }
-    tipoNodo *valor = aux->siguiente->dato;
-    aux->siguiente = NULL;
-    cola->frente = aux;
-    free(aux->siguiente);
-    return valor;
-}
+tipoElemento colaSuprime(Cola *c) {
+	if(c == NULL || c->frente == NULL) return NULL;
 
+	tipoCelda *aBorrar = c->frente;
+	tipoElemento elemento = aBorrar->elemento;
+
+	c->frente = aBorrar->sig;
+	if(aBorrar == c->fondo) c->fondo = c->frente;
+	free(aBorrar);
+	return elemento;
+}

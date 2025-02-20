@@ -2,22 +2,30 @@
 #define __COLA_H
 #include "arbol.h"
 
-typedef struct Nodo
-{
-    tipoNodo *dato;
-    struct Nodo *siguiente;
-}Nodo;
+#ifndef __TIPO_ELEMENTO
+#define __TIPO_ELEMENTO
+typedef tipoNodo * tipoElemento;
+#endif
+
+#ifndef __TIPO_CELDA
+#define __TIPO_CELDA
+typedef struct tipoCelda {
+	tipoElemento elemento;
+	struct tipoCelda * sig;
+	} tipoCelda;
+#endif
 
 
-typedef struct Cola
-{
-    Nodo *frente;
-    Nodo *cola;
-}Cola;
+typedef struct {
+        tipoCelda *frente, *fondo;
+} Cola;
 
-void colaCreaVacia(Cola *cola);
-void colaInserta(Cola *cola, tipoNodo *dato);
-tipoNodo* colaSuprime(Cola *cola);
-int colaVacia(Cola *cola);
+int colaCreaVacia(Cola *c);
+
+int colaVacia(Cola *c);
+
+int colaInsertaC(Cola *c, tipoElemento elemento);
+
+tipoElemento colaSuprime(Cola *c);
 
 #endif

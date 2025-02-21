@@ -7,7 +7,7 @@ int main(void)
 { Arbol arbol; 
   char ex_postfija[10];
 
-/* Generación del árbol algebraico */
+/* Generaciï¿½n del ï¿½rbol algebraico */
   strcpy(ex_postfija,"AB+CDE+**\0");
 
   arbol = genArbol(ex_postfija);
@@ -15,7 +15,7 @@ int main(void)
 /* Recorrido en amplitud o por niveles */
    amplitud(arbol);
 
-/* Aplicación de algunas operaciones y recorridos al árbol ejemplo */
+/* Aplicaciï¿½n de algunas operaciones y recorridos al ï¿½rbol ejemplo */
 
 
   printf("Recorrido en PRE_ORDEN: ");
@@ -28,25 +28,24 @@ int main(void)
   printf("Recorrido en POST_ORDEN: ");
   postOrden(arbol);
   printf("\n");
-  printf("Debe coinicidir con la expresión postfija inicial\n");
+  printf("Debe coinicidir con la expresiï¿½n postfija inicial\n");
 
-  printf("El árbol tiene %d nodos \n", numNodos(arbol));
+  printf("El ï¿½rbol tiene %d nodos \n", numNodos(arbol));
   printf("y altura: %d\n",altura(arbol));
 
-  printf("El árbol tiene %d nodos\n", numNodos(arbol));
-  arbol = Anula(arbol);
-  printf("Después de anula el arbol queda vacio, por tanto la altura será 0.\n");
-  if (altura(arbol)!=-1)		// Cuidado con definición de altura
-     printf("El árbol no se ha anulado correctamente\n");
+  printf("El ï¿½rbol tiene %d nodos\n", numNodos(arbol));
+  arbol = anula(arbol);
+  printf("Despuï¿½s de anula el arbol queda vacio, por tanto la altura serï¿½ 0.\n");
+  if (altura(arbol)!=-1)		// Cuidado con definiciï¿½n de altura
+     printf("El ï¿½rbol no se ha anulado correctamente\n");
   else
-     printf("O.K. Parece que la operación anula funciona!!!\n");
+     printf("O.K. Parece que la operaciï¿½n anula funciona!!!\n");
 
 
-/* Evaluación de un árbol algebraico: operandos entre '0' y '9'*/
+/* Evaluaciï¿½n de un ï¿½rbol algebraico: operandos entre '0' y '9'*/
 
   strcpy(ex_postfija,"23+713+**\0");
   arbol = genArbol(ex_postfija);
-  printf("evalua: %d\n", evaluar(arbol));
   printf("Recorrido en PRE_ORDEN (prefija): ");
   preOrden(arbol);
   printf("\n");

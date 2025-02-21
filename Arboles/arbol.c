@@ -55,6 +55,10 @@ int numNodos(Arbol raiz)
 }
 Arbol anula(Arbol raiz)
 {
+  raiz->der = NULL;
+  raiz->izq = NULL;
+  raiz->info = 0;
+  return raiz;
 }
 int numNodosHoja(Arbol raiz)
 {
@@ -80,6 +84,20 @@ Arbol buscarMax(Arbol raiz)
     if (raiz==NULL) return NULL;
     else if (raiz->der==NULL && raiz->izq==NULL) return raiz;
     else return buscarMax(raiz->der) < buscarMax(raiz->izq)? buscarMax(raiz->izq):buscarMax(raiz->der);
+}
+Arbol buscarMin(Arbol raiz)
+{
+    if (raiz==NULL) return NULL;
+    else if (raiz->der==NULL && raiz->izq==NULL) return raiz;
+    else return buscarMin(raiz->der) < buscarMin(raiz->izq)? buscarMin(raiz->izq):buscarMin(raiz->der);
+}
+int similares(Arbol r1, Arbol r2)
+{
+    return 0;
+}
+int equivalentes(Arbol r1, Arbol r2)
+{
+    return 0;
 }
 //
 // Recorridos en profundidad "recursivos"
